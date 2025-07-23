@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\WarehouseController;
-
+use App\Http\Controllers\Api\ProductMovementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +59,6 @@ Route::post('/orders/{order}/resume', [OrderController::class, 'resume']);
 
 // Роут для обновления заказа
 Route::put('/orders/{order}', [OrderController::class, 'update']);
+
+// Роут для просмотра истории движений
+Route::get('/product-movements', [ProductMovementController::class, 'index']);

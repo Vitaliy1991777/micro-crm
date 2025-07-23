@@ -1,18 +1,15 @@
 <?php
 
+use App\Http\Controllers\Web\OrderPageController; // <-- Импортируем наш новый контроллер
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Роут для главной страницы со списком заказов
+Route::get('/', [OrderPageController::class, 'index'])->name('orders.index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Роут для обработки формы создания нового заказа
+Route::post('/orders', [OrderPageController::class, 'store'])->name('orders.store');
+
+// Роуты для кнопок управления заказом
+Route::post('/orders/{order}/complete', [OrderPageController::class, 'complete'])->name('orders.complete');
+Route::post('/orders/{order}/cancel', [OrderPageController::class, 'cancel'])->name('orders.cancel');
+Route::post('/orders/{order}/resume', [OrderPageController::class, 'resume'])->name('orders.resume');

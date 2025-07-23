@@ -16,8 +16,20 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        $adjectives = [
+            'Деревянный', 'Металлический', 'Пластиковый', 'Стеклянный', 'Большой', 
+            'Маленький', 'Красный', 'Синий', 'Зеленый', 'Современный', 'Классический'
+        ];
+        
+        $nouns = [
+            'стол', 'стул', 'шкаф', 'комод', 'диван', 
+            'стеллаж', 'ящик', 'кронштейн', 'светильник', 'крючок'
+        ];
+
         return [
-            'name' => $this->faker->words(rand(2, 4), true),
+            // Выбираем случайное прилагательное и случайное существительное
+            'name' => $this->faker->randomElement($adjectives) . ' ' . $this->faker->randomElement($nouns),
+            
             'price' => $this->faker->randomFloat(2, 100, 5000),
         ];
     }
